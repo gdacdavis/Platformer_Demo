@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=3 uid="uid://cvnkm8jrtuhia"]
+
+[ext_resource type="Texture2D" uid="uid://crc3sgs3wjl7m" path="res://spritesheet.png" id="1_l0jcs"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_wwgxp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtmpc"]
+atlas = ExtResource("1_l0jcs")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0drl"]
+atlas = ExtResource("1_l0jcs")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cplsh"]
+atlas = ExtResource("1_l0jcs")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80kfe"]
+atlas = ExtResource("1_l0jcs")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5sbd"]
+atlas = ExtResource("1_l0jcs")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2qhqg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtmpc")
+}],
+"loop": true,
+"name": &"IDLE",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0drl")
+}],
+"loop": true,
+"name": &"JUMP",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cplsh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80kfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cplsh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5sbd")
+}],
+"loop": true,
+"name": &"RUN",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_omfkw"]
+size = Vector2(48, 64)
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 4
+script = ExtResource("1_wwgxp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_2qhqg")
+animation = &"IDLE"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_omfkw")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
