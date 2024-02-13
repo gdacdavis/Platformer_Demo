@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 class_name Player
 
+# @export in Godot Engine is essentially [SerializeField] in Unity Engine
 @export var SPEED : float = 250.0
 @export var JUMP_VELOCITY : float = 400.0
 const CAMERA_OFFSET : Vector2 = Vector2(320.0, 108.0)
@@ -18,6 +19,7 @@ func _physics_process(delta):
 	var direction = Vector2(Input.get_axis("MOVE_LEFT", "MOVE_RIGHT"), Input.get_axis("JUMP", "DUCK"))
 	if direction:
 		velocity.x = direction.x * SPEED
+		# $AnimatedSprite is the same as GetComponent(<AnimatedSprite2D>)
 		$AnimatedSprite2D.play("RUN")
 		if direction == Vector2.LEFT:
 			$AnimatedSprite2D.flip_h = true
