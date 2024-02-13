@@ -5,6 +5,7 @@ class_name Player
 @export var SPEED : float = 250.0
 @export var JUMP_VELOCITY : float = 400.0
 const CAMERA_OFFSET : Vector2 = Vector2(320.0, 108.0)
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _physics_process(delta):
